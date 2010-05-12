@@ -15,7 +15,7 @@ public class NumerologyCalculatorRussian implements NumerologyCalculator {
         NumerologyResult result = new NumerologyResult(token);
         final int sum = calculateSum(token);
         result.setSum(sum);
-        result.setModality(calculateModality(token));
+        result.setModality(calculateModality(sum));
         result.setNumber(calculateNumber(sum));
         return result;
     }
@@ -25,7 +25,7 @@ public class NumerologyCalculatorRussian implements NumerologyCalculator {
 
 
         int remainder;
-        while (sum > 0){
+        while (sum > 0) {
             remainder = sum % 10;
             number += remainder;
             sum = (sum - remainder) / 10;
@@ -36,8 +36,15 @@ public class NumerologyCalculatorRussian implements NumerologyCalculator {
         return number;
     }
 
-    private int calculateModality(String token) {
-        return 0;
+    private int calculateModality(int sum) {
+        if (sum > 81) {
+            sum = sum % 81;
+        }
+        int modality = 1 + (sum - sum % 9) / 9;
+        if (sum % 9 == 0) {
+            modality--;
+        }
+        return modality;
     }
 
     private int calculateSum(String token) {
@@ -54,7 +61,6 @@ public class NumerologyCalculatorRussian implements NumerologyCalculator {
         if (val == 12) {
             val = 22;
         }
-        LOGGER.info("Value of " + c + " is " + val);
         return val;
     }
 }

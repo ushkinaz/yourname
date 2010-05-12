@@ -33,9 +33,9 @@ public class NumerologyCalculatorRussianTest {
         putResult("Андрей", 32, 5, 4);
         putResult("Кириллович", 68, 5, 8);
         putResult("Пупсиков", 65, 2, 8);
-        putResult("Цирконий", 88, 7, 10);
-        putResult("Иннокентьевич", 85, 4, 10);
-        putResult("Фицулкин", 87, 6, 10);
+        putResult("Цирконий", 88, 7, 1);
+        putResult("Иннокентьевич", 85, 4, 1);
+        putResult("Фицулкин", 87, 6, 1);
         putResult("Мёрдок", 46, 1, 6);
     }
 

@@ -69,7 +69,7 @@ public class NumerologyResult {
         if (modality != that.modality) return false;
         if (number != that.number) return false;
         if (sum != that.sum) return false;
-        if (!token.equals(that.token)) return false;
+        if (!token.equalsIgnoreCase(that.token)) return false;
 
         return true;
     }
