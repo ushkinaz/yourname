@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="yourname" default="all">
+  
+  
+  <property file="yourname.properties"/>
+  <!-- Uncomment the following property if no tests compilation is needed -->
+  <!-- 
+  <property name="skip.tests" value="true"/>
+   -->
+  <property name="javac2.home" value="${idea.home}/lib"/>
+  <path id="javac2.classpath">
+    <pathelement location="${javac2.home}/javac2.jar"/>
+    <pathelement location="${javac2.home}/jdom.jar"/>
+    <pathelement location="${javac2.home}/asm.jar"/>
+    <pathelement location="${javac2.home}/asm-commons.jar"/>
+  </path>
+  <taskdef name="javac2" classname="com.intellij.ant.Javac2" classpathref="javac2.classpath"/>
+  <taskdef name="instrumentIdeaExtensions" classname="com.intellij.ant.InstrumentIdeaExtensions" classpathref="javac2.classpath"/>
+  
+  <!-- Compiler options -->
+  
+  <property name="compiler.debug" value="on"/>
+  <property name="compiler.generate.no.warnings" value="off"/>
+  <property name="compiler.args" value=""/>
+  <property name="compiler.max.memory" value="128m"/>
+  <patternset id="ignored.files">
+    <exclude name="**/CVS/**"/>
+    <exclude name="**/SCCS/**"/>
+    <exclude name="**/RCS/**"/>
+    <exclude name="**/rcs/**"/>
+    <exclude name="**/.DS_Store/**"/>
+    <exclude name="**/.svn/**"/>
+    <exclude name="**/.pyc/**"/>
+    <exclude name="**/.pyo/**"/>
+    <exclude name="**/*.pyc/**"/>
+    <exclude name="**/*.pyo/**"/>
+    <exclude name="**/.git/**"/>
+    <exclude name="**/*.hprof/**"/>
+    <exclude name="**/_svn/**"/>
+    <exclude name="**/.hg/**"/>
+  </patternset>
+  <patternset id="library.patterns">
+    <include name="*.zip"/>
+    <include name="*.war"/>
+    <include name="*.egg"/>
+    <include name="*.ear"/>
+    <include name="*.swc"/>
+    <include name="*.jar"/>
+  </patternset>
+  <patternset id="compiler.resources">
+    <include name="**/?*.properties"/>
+    <include name="**/?*.xml"/>
+    <include name="**/?*.gif"/>
+    <include name="**/?*.png"/>
+    <include name="**/?*.jpeg"/>
+    <include name="**/?*.jpg"/>
+    <include name="**/?*.html"/>
+    <include name="**/?*.dtd"/>
+    <include name="**/?*.tld"/>
+    <include name="**/?*.ftl"/>
+  </patternset>
+  
+  <!-- JDK definitions -->
+  
+  <property name="jdk.bin.1.6" value="${jdk.home.1.6}/bin"/>
+  <path id="jdk.classpath.1.6">
+    <fileset dir="${jdk.home.1.6}">
+      <include name="jre/lib/jce.jar"/>
+      <include name="jre/lib/charsets.jar"/>
+      <include name="jre/lib/alt-rt.jar"/>
+      <include name="jre/lib/deploy.jar"/>
+      <include name="jre/lib/resources.jar"/>
+      <include name="jre/lib/plugin.jar"/>
+      <include name="jre/lib/rt.jar"/>
+      <include name="jre/lib/jsse.jar"/>
+      <include name="jre/lib/javaws.jar"/>
+      <include name="jre/lib/management-agent.jar"/>
+      <include name="jre/lib/ext/sunjce_provider.jar"/>
+      <include name="jre/lib/ext/localedata.jar"/>
+      <include name="jre/lib/ext/dnsns.jar"/>
+      <include name="jre/lib/ext/sunpkcs11.jar"/>
+    </fileset>
+  </path>
+  
+  <property name="project.jdk.home" value="${jdk.home.1.6}"/>
+  <property name="project.jdk.bin" value="${jdk.bin.1.6}"/>
+  <property name="project.jdk.classpath" value="jdk.classpath.1.6"/>
+  
+  
+  <!-- Project Libraries -->
+  
+  <path id="library.testing.classpath">
+    <fileset dir="${basedir}/lib/test">
+      <patternset refid="library.patterns"/>
+    </fileset>
+  </path>
+  
+  
+  <!-- Global Libraries -->
+  
+  <path id="library.android_2.1_platform.classpath">
+    <pathelement location="/home/dsidorenko/lib/android-sdk-linux_86/platforms/android-7/android.jar"/>
+  </path>
+  
+  
+  <!-- Application Server Libraries -->
+  
+  <!-- Modules -->
+  
+  
+  <!-- Module Yourname -->
+  
+  <dirname property="module.yourname.basedir" file="${ant.file}"/>
+  
+  
+  <property name="module.jdk.home.yourname" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.yourname" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.yourname" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.yourname" value="${compiler.args}"/>
+  
+  <property name="yourname.output.dir" value="${module.yourname.basedir}/out/production/Yourname"/>
+  <property name="yourname.testoutput.dir" value="${module.yourname.basedir}/out/test/Yourname"/>
+  
+  <path id="yourname.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="yourname.module.classpath">
+    <path refid="${module.jdk.classpath.yourname}"/>
+    <path refid="library.testing.classpath"/>
+    <path refid="library.android_2.1_platform.classpath"/>
+  </path>
+  
+  <path id="yourname.runtime.module.classpath">
+    <pathelement location="${yourname.output.dir}"/>
+    <pathelement location="${yourname.testoutput.dir}"/>
+    <path refid="library.testing.classpath"/>
+    <path refid="library.android_2.1_platform.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.yourname">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.yourname">
+    <patternset refid="excluded.from.module.yourname"/>
+  </patternset>
+  
+  <path id="yourname.module.sourcepath">
+    <dirset dir="${module.yourname.basedir}">
+      <include name="src"/>
+      <include name="gen"/>
+    </dirset>
+  </path>
+  
+  <path id="yourname.module.test.sourcepath">
+    <dirset dir="${module.yourname.basedir}">
+      <include name="test"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.yourname" depends="compile.module.yourname.production,compile.module.yourname.tests" description="Compile module Yourname"/>
+  
+  <target name="compile.module.yourname.production" description="Compile module Yourname; production classes">
+    <mkdir dir="${yourname.output.dir}"/>
+    <javac2 destdir="${yourname.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.yourname}/javac">
+      <compilerarg line="${compiler.args.yourname}"/>
+      <bootclasspath refid="yourname.module.bootclasspath"/>
+      <classpath refid="yourname.module.classpath"/>
+      <src refid="yourname.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.yourname"/>
+    </javac2>
+    
+    <copy todir="${yourname.output.dir}">
+      <fileset dir="${module.yourname.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.yourname.basedir}/gen">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.yourname.tests" depends="compile.module.yourname.production" description="compile module Yourname; test classes" unless="skip.tests">
+    <mkdir dir="${yourname.testoutput.dir}"/>
+    <javac2 destdir="${yourname.testoutput.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.yourname}/javac">
+      <compilerarg line="${compiler.args.yourname}"/>
+      <classpath refid="yourname.module.classpath"/>
+      <classpath>
+        <path refid="yourname.module.classpath"/>
+        <pathelement location="${yourname.output.dir}"/>
+      </classpath>
+      <src refid="yourname.module.test.sourcepath"/>
+      <patternset refid="excluded.from.compilation.yourname"/>
+    </javac2>
+    
+    <copy todir="${yourname.testoutput.dir}">
+      <fileset dir="${module.yourname.basedir}/test">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="clean.module.yourname" description="cleanup module">
+    <delete dir="${yourname.output.dir}"/>
+    <delete dir="${yourname.testoutput.dir}"/>
+  </target>
+  
+  <target name="init" description="Build initialization">
+    <!-- Perform any build initialization in this target -->
+  </target>
+  
+  <target name="clean" depends="clean.module.yourname" description="cleanup all"/>
+  
+  <target name="build.modules" depends="init, clean, compile.module.yourname" description="build all modules"/>
+  
+  <target name="all" depends="build.modules" description="build all"/>
+</project>
