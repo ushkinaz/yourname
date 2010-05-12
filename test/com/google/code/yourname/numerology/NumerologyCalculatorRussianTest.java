@@ -30,37 +30,21 @@ public class NumerologyCalculatorRussianTest {
         checkResults = new HashMap<String, NumerologyResult>();
 
         //Prepare results
+        putResult("Андрей", 32, 5, 4);
+        putResult("Кириллович", 68, 5, 8);
+        putResult("Пупсиков", 65, 2, 8);
+        putResult("Цирконий", 88, 7, 10);
+        putResult("Иннокентьевич", 85, 4, 10);
+        putResult("Фицулкин", 87, 6, 10);
+        putResult("Мёрдок", 46, 1, 6);
+    }
+
+    private static void putResult(String token, int expectedSum, int expectedNumber, int expectedModality) {
         NumerologyResult numerologyResult;
-
-        numerologyResult = new NumerologyResult("Андрей");
-        numerologyResult.setSum(32);
-        numerologyResult.setNumber(5);
-        numerologyResult.setModality(4);
-
-        numerologyResult = new NumerologyResult("Кириллович");
-        numerologyResult.setSum(68);
-        numerologyResult.setNumber(5);
-        numerologyResult.setModality(8);
-
-        numerologyResult = new NumerologyResult("Пупсиков");
-        numerologyResult.setSum(65);
-        numerologyResult.setNumber(2);
-        numerologyResult.setModality(8);
-
-        numerologyResult = new NumerologyResult("Цирконий");
-        numerologyResult.setSum(88);
-        numerologyResult.setNumber(7);
-        numerologyResult.setModality(10);
-
-        numerologyResult = new NumerologyResult("Иннокентьевич");
-        numerologyResult.setSum(85);
-        numerologyResult.setNumber(4);
-        numerologyResult.setModality(10);
-
-        numerologyResult = new NumerologyResult("Фицулкин");
-        numerologyResult.setSum(87);
-        numerologyResult.setNumber(6);
-        numerologyResult.setModality(10);
+        numerologyResult = new NumerologyResult(token);
+        numerologyResult.setSum(expectedSum);
+        numerologyResult.setNumber(expectedNumber);
+        numerologyResult.setModality(expectedModality);
         checkResults.put(numerologyResult.getToken(), numerologyResult);
     }
 
