@@ -3,69 +3,52 @@
      a row, here set to be vertical (so the first is at the top) -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent" android:layout_height="fill_parent"
-    android:orientation="vertical">
+              android:layout_width="fill_parent" android:layout_height="fill_parent"
+              android:orientation="vertical">
 
+    <LinearLayout android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  android:baselineAligned="false">
     <!-- First view is a text editor.  We want it to use all available
          horizontal space, and stretch to fill whatever vertical space
          is available to it.  Note the use of the "id" attribute, which
          allows us to find this object from the Java code. -->
-    <EditText android:id="@+id/editor"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:autoText="true"
-        android:capitalize="words"
-        android:layout_weight="1"
-        android:freezesText="true" >
-        <requestFocus />
-    </EditText>
-
-    <EditText android:id="@+id/sum"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:autoText="true"
-        android:capitalize="words"
-        android:layout_weight="1"
-        android:freezesText="true" >
-        <requestFocus />
-    </EditText>
-
-    <EditText android:id="@+id/number"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:autoText="true"
-        android:capitalize="words"
-        android:layout_weight="1"
-        android:freezesText="true" >
-        <requestFocus />
-    </EditText>
-
-    <EditText android:id="@+id/modality"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:autoText="true"
-        android:capitalize="words"
-        android:layout_weight="1"
-        android:freezesText="true" >
-        <requestFocus />
-    </EditText>
-    <!-- Next view is another linear layout manager, now horizontal.  We
-         give it a custom background; see colors.xml for the definition
-         of drawable/semi_black-->
-    <LinearLayout
-        android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical" android:gravity="center_horizontal"
-        android:orientation="horizontal"
-        android:background="@drawable/semi_black">
-
+        <EditText android:id="@+id/editor"
+                  android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  android:autoText="true"
+                  android:capitalize="words"
+                  android:layout_weight="1"
+                  android:freezesText="true"
+                  android:text="@string/default_name"
+                >
+            <requestFocus/>
+        </EditText>
         <!-- On the left: the "back" button.  See styles.xml for the
              definition of style/ActionButton, which we use to hold
              common attributes that are used for both this and the
              clear button.  See strings.xml for the definition of
              string/back. -->
         <Button android:id="@+id/calculate" style="@style/ActionButton"
-            android:text="@string/calculate" />
-
+                android:text="@string/calculate"/>
     </LinearLayout>
 
+    <TextView android:id="@+id/sum"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:layout_weight="1">
+    </TextView>
+
+    <TextView android:id="@+id/number"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:layout_weight="1">
+    </TextView>
+
+    <TextView android:id="@+id/modality"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:layout_weight="1">
+        <requestFocus/>
+    </TextView>
 </LinearLayout>

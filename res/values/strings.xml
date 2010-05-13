@@ -20,10 +20,8 @@
 <resources>
     <!-- Simple strings. -->
     <string name="app_name">Нумерология</string>
-    <string name="calculate">Посчитать</string>
-    <string name="clear">Clear</string>
+    <string name="calculate">Счет</string>
 
-    <!-- This is a complex string containing style runs. -->
-    <string name="main_label">Афанасий Иванович Фучиков</string>
+    <string name="default_name">Афанасий Иванович Фучиков</string>
 </resources>
 

@@ -43,28 +43,33 @@ public class MainActivity extends Activity {
         // want to do various programmatic things with it.
         mEditor = (EditText) findViewById(R.id.editor);
 
-        sum = (EditText) findViewById(R.id.sum);
-        number = (EditText) findViewById(R.id.number);
-        modality = (EditText) findViewById(R.id.modality);
+        sum = (TextView) findViewById(R.id.sum);
+        number = (TextView) findViewById(R.id.number);
+        modality = (TextView) findViewById(R.id.modality);
 
         // Hook up button presses to the appropriate event handler.
         findViewById(R.id.calculate).setOnClickListener(mBackListener);
 
-        mEditor.setText(getText(R.string.main_label));
         mEditor.setKeyListener(new BaseKeyListener() {
             public int getInputType() {
-                return InputType.TYPE_TEXT_VARIATION_PERSON_NAME;
+                return InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS;
             }
 
             @Override
             public boolean onKeyDown(View view, Editable content, int keyCode, KeyEvent event) {
-                nameUpdated();
+                updateNumerologyValues();
                 return super.onKeyDown(view, content, keyCode, event);
+            }
+
+            @Override
+            public boolean onKeyOther(View view, Editable content, KeyEvent event) {
+                updateNumerologyValues();
+                return super.onKeyOther(view, content, event);
             }
         });
     }
 
-    private void nameUpdated() {
+    private void updateNumerologyValues() {
         NumerologyResult result = numerologyCalculator.calculateResult(mEditor.getText().toString());
         sum.setText(Integer.toString(result.getSum()));
         number.setText(Integer.toString(result.getNumber()));
@@ -76,7 +81,7 @@ public class MainActivity extends Activity {
      */
     View.OnClickListener mBackListener = new View.OnClickListener() {
         public void onClick(View v) {
-
+            updateNumerologyValues();
         }
     };
 
