@@ -53,7 +53,7 @@ public class MainActivity extends Activity {
         mEditor.setKeyListener(new BaseKeyListener() {
             public int getInputType() {
                 return InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS;
-            }
+            }                                   
 
             @Override
             public boolean onKeyDown(View view, Editable content, int keyCode, KeyEvent event) {
