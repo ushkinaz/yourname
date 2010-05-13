@@ -22,9 +22,8 @@ public final class R {
         public static final int semi_black=0x7f020001;
     }
     public static final class id {
-        public static final int calculate=0x7f070002;
         public static final int editor=0x7f070001;
-        public static final int first_result=0x7f070003;
+        public static final int first_result=0x7f070002;
         public static final int results_view=0x7f070000;
     }
     public static final class layout {

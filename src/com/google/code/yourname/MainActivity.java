@@ -3,9 +3,7 @@ package com.google.code.yourname;
 import android.app.Activity;
 import android.os.Bundle;
 import android.text.Editable;
-import android.text.InputType;
-import android.text.method.BaseKeyListener;
-import android.view.KeyEvent;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -28,7 +26,7 @@ public class MainActivity extends Activity {
      * TODO: Use IOC
      */
     private NumerologyCalculator numerologyCalculator;
-    private EditText mEditor;
+    private EditText nameEditor;
     private TextView firstResult;
     private List<TextView> results;
 
@@ -52,7 +50,7 @@ public class MainActivity extends Activity {
 
         // Find the text editor view inside the layout, because we
         // want to do various programmatic things with it.
-        mEditor = (EditText) findViewById(R.id.editor);
+        nameEditor = (EditText) findViewById(R.id.editor);
 
         firstResult = (TextView) findViewById(R.id.first_result);
         results.add(firstResult);
@@ -64,25 +62,20 @@ public class MainActivity extends Activity {
         addNewResultRow();
 
         // Hook up button presses to the appropriate event handler.
-        findViewById(R.id.calculate).setOnClickListener(calculateListener);
+//        findViewById(R.id.calculate).setOnClickListener(calculateListener);
 
-        mEditor.setKeyListener(new BaseKeyListener() {
-            public int getInputType() {
-                return InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS;
+        nameEditor.addTextChangedListener(new TextWatcher() {
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
             }
 
-            @Override
-            public boolean onKeyDown(View view, Editable content, int keyCode, KeyEvent event) {
-//                updateNumerologyValues();
-                return super.onKeyDown(view, content, keyCode, event);
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
             }
 
-            @Override
-            public boolean onKeyOther(View view, Editable content, KeyEvent event) {
-//                updateNumerologyValues();
-                return super.onKeyOther(view, content, event);
+            public void afterTextChanged(Editable editable) {
+                updateNumerologyValues();
             }
         });
+        updateNumerologyValues();
     }
 
     private void addNewResultRow() {
@@ -99,7 +92,7 @@ public class MainActivity extends Activity {
     private void updateNumerologyValues() {
         cleanupResultRows();
 
-        String name = mEditor.getText().toString().trim();
+        String name = nameEditor.getText().toString().trim();
         if (checkEasterEgg(name)){
             return;
         }

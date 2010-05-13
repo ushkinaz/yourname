@@ -25,13 +25,10 @@
                 >
             <requestFocus/>
         </EditText>
-        <!-- On the left: the "back" button.  See styles.xml for the
-             definition of style/ActionButton, which we use to hold
-             common attributes that are used for both this and the
-             clear button.  See strings.xml for the definition of
-             string/back. -->
+<!--
         <Button android:id="@+id/calculate" style="@style/ActionButton"
                 android:text="@string/calculate"/>
+-->
     </LinearLayout>
 
     <TextView android:id="@+id/first_result"
