@@ -3,8 +3,7 @@ package com.google.code.yourname.numerology;
 import java.util.logging.Logger;
 
 /**
- * @author dsidorenko
- * @date May 12, 2010
+ * @author Dmitry Sidorenko
  */
 public class NumerologyCalculatorRussian implements NumerologyCalculator {
     private static final Logger LOGGER = Logger.getLogger(NumerologyCalculatorRussian.class.getName());

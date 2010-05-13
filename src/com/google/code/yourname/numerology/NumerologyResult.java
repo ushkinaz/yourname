@@ -2,14 +2,14 @@ package com.google.code.yourname.numerology;
 
 /**
  * Defines a result of numerology calculations for one token.
- * @author dsidorenko
- * @date May 12, 2010
+ *
+ * @author Dmitry Sidorenko
  */
 public class NumerologyResult {
     /**
      * Original token for which calculation took place.
      */
-    private String token;
+    private final String token;
 
     /**
      * Summ of numeric values of letters.
@@ -60,6 +60,7 @@ public class NumerologyResult {
 
 
     @Override
+    @SuppressWarnings({"RedundantIfStatement"})
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof NumerologyResult)) return false;

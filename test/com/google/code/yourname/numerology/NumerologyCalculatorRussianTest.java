@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author dsidorenko
+ * @author Dmitry Sidorenko
  */
 public class NumerologyCalculatorRussianTest {
     private static Map<String, NumerologyResult> checkResults;

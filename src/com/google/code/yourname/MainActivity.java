@@ -24,6 +24,9 @@ import java.util.List;
  */
 public class MainActivity extends Activity {
 
+    /**
+     * TODO: Use IOC
+     */
     private NumerologyCalculator numerologyCalculator;
     private EditText mEditor;
     private TextView firstResult;
@@ -61,7 +64,7 @@ public class MainActivity extends Activity {
         addNewResultRow();
 
         // Hook up button presses to the appropriate event handler.
-        findViewById(R.id.calculate).setOnClickListener(mBackListener);
+        findViewById(R.id.calculate).setOnClickListener(calculateListener);
 
         mEditor.setKeyListener(new BaseKeyListener() {
             public int getInputType() {
@@ -135,7 +138,7 @@ public class MainActivity extends Activity {
     }
 
     private TextView getResultRow(int i) {
-        TextView resultsRow = null;
+        TextView resultsRow;
         try {
             resultsRow = results.get(i);
         } catch (IndexOutOfBoundsException e) {
@@ -149,7 +152,7 @@ public class MainActivity extends Activity {
     /**
      * A call-back for when the user presses the calculate button.
      */
-    View.OnClickListener mBackListener = new View.OnClickListener() {
+    private final View.OnClickListener calculateListener = new View.OnClickListener() {
         public void onClick(View v) {
             updateNumerologyValues();
         }
