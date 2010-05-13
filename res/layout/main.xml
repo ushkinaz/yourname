@@ -3,8 +3,9 @@
      a row, here set to be vertical (so the first is at the top) -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="fill_parent" android:layout_height="fill_parent"
-              android:orientation="vertical">
+              android:layout_width="fill_parent" android:layout_height="wrap_content"
+              android:orientation="vertical"
+               android:id="@+id/results_view">
 
     <LinearLayout android:layout_width="fill_parent"
                   android:layout_height="wrap_content"
@@ -33,22 +34,12 @@
                 android:text="@string/calculate"/>
     </LinearLayout>
 
-    <TextView android:id="@+id/sum"
+    <TextView android:id="@+id/first_result"
               android:layout_width="fill_parent"
               android:layout_height="wrap_content"
+              android:gravity="right"
+              android:textSize="26sp"
               android:layout_weight="1">
     </TextView>
 
-    <TextView android:id="@+id/number"
-              android:layout_width="fill_parent"
-              android:layout_height="wrap_content"
-              android:layout_weight="1">
-    </TextView>
-
-    <TextView android:id="@+id/modality"
-              android:layout_width="fill_parent"
-              android:layout_height="wrap_content"
-              android:layout_weight="1">
-        <requestFocus/>
-    </TextView>
 </LinearLayout>
