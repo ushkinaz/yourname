@@ -1,13 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.google.code.yourname">
+          package="com.google.code.yourname"
+          android:versionCode="2"
+          android:versionName="1.0"
+        >
     <uses-sdk android:minSdkVersion="4"/>
-    <application android:icon="@drawable/icon" android:label="@string/app_name" android:description="@string/application_description">
+
+    <application android:icon="@drawable/icon" android:label="@string/app_name"
+                 android:description="@string/application_description"
+            android:allowClearUserData="true">
+
         <activity android:name=".FullScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <receiver android:name=".NameWidget" android:label="@string/widget_name">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/name_widget_provider"/>
+        </receiver>
     </application>
+
 </manifest>
