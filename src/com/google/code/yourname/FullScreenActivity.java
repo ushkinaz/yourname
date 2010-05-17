@@ -20,7 +20,7 @@ import java.util.List;
  * Date: 11.05.2010
  * Created by Dmitry Sidorenko.
  */
-public class MainActivity extends Activity {
+public class FullScreenActivity extends Activity {
 
     /**
      * TODO: Use IOC
@@ -32,7 +32,7 @@ public class MainActivity extends Activity {
 
     private LinearLayout resultsView;
 
-    public MainActivity() {
+    public FullScreenActivity() {
         numerologyCalculator = new NumerologyCalculatorRussian();
     }
 
