@@ -20,6 +20,7 @@
 <resources>
     <!-- Simple strings. -->
     <string name="app_name">Алхимический Именователь Тьюринга</string>
+    <string name="widget_name">Именователь</string>
     <string name="application_description">Подсчет нумерологических значений для слов</string>
 
     <string name="calculate">Счет</string>
