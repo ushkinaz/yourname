@@ -10,8 +10,7 @@ public interface NumerologyCalculator {
     /**
      * Calculates result.
      *
-     * @param token token to calculate
-     * @return result of calculation
+     * @param token token to calculate  @return result of calculation
      */
     NumerologyResult calculateResult(String token);
 }

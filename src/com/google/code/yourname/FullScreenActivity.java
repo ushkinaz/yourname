@@ -4,15 +4,10 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.google.code.yourname.numerology.NumerologyCalculator;
-import com.google.code.yourname.numerology.NumerologyCalculatorRussian;
-import com.google.code.yourname.numerology.NumerologyResult;
 
-import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,18 +17,14 @@ import java.util.List;
  */
 public class FullScreenActivity extends Activity {
 
-    /**
-     * TODO: Use IOC
-     */
-    private NumerologyCalculator numerologyCalculator;
     private EditText nameEditor;
     private TextView firstResult;
     private List<TextView> results;
 
     private LinearLayout resultsView;
+    private final NumerologyWorker numerologyWorker = new NumerologyWorker();
 
     public FullScreenActivity() {
-        numerologyCalculator = new NumerologyCalculatorRussian();
     }
 
     /**
@@ -72,10 +63,11 @@ public class FullScreenActivity extends Activity {
             }
 
             public void afterTextChanged(Editable editable) {
-                updateNumerologyValues();
+                cleanupResultRows();
+                numerologyWorker.updateNumerologyValues(nameEditor.getText().toString().trim(), new NumerologyCallbackFullscreen(FullScreenActivity.this));
             }
         });
-        updateNumerologyValues();
+        numerologyWorker.updateNumerologyValues(nameEditor.getText().toString().trim(), null);
     }
 
     private void addNewResultRow() {
@@ -89,39 +81,6 @@ public class FullScreenActivity extends Activity {
         resultsView.addView(textView);
     }
 
-    private void updateNumerologyValues() {
-        cleanupResultRows();
-
-        String name = nameEditor.getText().toString().trim();
-        if (checkEasterEgg(name)){
-            return;
-        }
-
-        String[] nameParts = name.split("\\s+");
-        String namePart;
-
-        for (int i= 0; i< nameParts.length; i++){
-            namePart = nameParts[i].trim();
-            if (namePart.length() == 0) {
-                continue;
-            }
-            NumerologyResult result = numerologyCalculator.calculateResult(namePart);
-            TextView resultRow = getResultRow(i);
-            resultRow.setText(MessageFormat.format("{0}: {1} = {2} ^ {3}", result.getToken(), result.getSum(), result.getNumber(), result.getModality()));
-        }
-    }
-
-    private boolean checkEasterEgg(String name) {
-        if (name.toUpperCase().equals("ЛАРИСА ЮРЬЕВНА ПОПОВА")) {
-            firstResult.setText("О заказчике - ни слова. Одни семерки и переходы на другой уровень.");
-            return true;
-        }
-        if (name.toUpperCase().equals("АНТОН ПАВЛОВИЧ ЧЕХОВ")) {
-            firstResult.setText("Русский писатель, драматург, по профессии врач.");
-            return true;
-        }
-        return false;
-    }
 
     private void cleanupResultRows() {
         for (TextView textView: results){
@@ -130,7 +89,7 @@ public class FullScreenActivity extends Activity {
         firstResult.setText(R.string.help_empty_string);
     }
 
-    private TextView getResultRow(int i) {
+    TextView getResultRow(int i) {
         TextView resultsRow;
         try {
             resultsRow = results.get(i);
@@ -141,14 +100,4 @@ public class FullScreenActivity extends Activity {
         }
         return resultsRow;
     }
-
-    /**
-     * A call-back for when the user presses the calculate button.
-     */
-    private final View.OnClickListener calculateListener = new View.OnClickListener() {
-        public void onClick(View v) {
-            updateNumerologyValues();
-        }
-    };
-
 }

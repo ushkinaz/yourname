@@ -1,12 +1,9 @@
 package com.google.code.yourname.numerology;
 
-import java.util.logging.Logger;
-
 /**
  * @author Dmitry Sidorenko
  */
 public class NumerologyCalculatorRussian implements NumerologyCalculator {
-    private static final Logger LOGGER = Logger.getLogger(NumerologyCalculatorRussian.class.getName());
 
     private final static String alphabet = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
 
