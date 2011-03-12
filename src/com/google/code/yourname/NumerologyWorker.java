@@ -36,16 +36,16 @@ public class NumerologyWorker {
 
     boolean checkEasterEgg(String name, NumerologyCallback callback) {
         //TODO: Refactor this
-        if (name.toUpperCase().equals("ЛАРИСА ЮРЬЕВНА ПОПОВА")) {
-            final NumerologyResult result = new NumerologyResult(name);
-            callback.resultRetrieved(0, result);
-            //"О заказчике - ни слова. Одни семерки и переходы на другой уровень."
-            return true;
-        } else if (name.toUpperCase().equals("АНТОН ПАВЛОВИЧ ЧЕХОВ")) {
-            final NumerologyResult result = new NumerologyResult(name);
-            //fullScreenActivity.getFirstResult().setText("Русский писатель, драматург, по профессии врач.");
-            return true;
-        }
+//        if (name.toUpperCase().equals("ЛАРИСА ЮРЬЕВНА ПОПОВА")) {
+//            final NumerologyResult result = new NumerologyResult(name);
+//            callback.resultRetrieved(0, result);
+//            //"О заказчике - ни слова. Одни семерки и переходы на другой уровень."
+//            return true;
+//        } else if (name.toUpperCase().equals("АНТОН ПАВЛОВИЧ ЧЕХОВ")) {
+//            final NumerologyResult result = new NumerologyResult(name);
+//            //fullScreenActivity.getFirstResult().setText("Русский писатель, драматург, по профессии врач.");
+//            return true;
+//        }
         return false;
     }
 }
